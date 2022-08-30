@@ -39,6 +39,7 @@
 import InputComponent from '../components/InputComponent.vue';
 import NowToDoComponent from '../components/NowToDoComponent.vue';
 import ListComponent from '../components/ListComponent.vue';
+import userinfor from '../assets/UserInfor.json';
 
 export default {
   name: 'HomeView',
@@ -46,6 +47,9 @@ export default {
     InputComponent,
     ListComponent,
     NowToDoComponent,
+  },
+  created() {
+    this.$store.commit('setUser', userinfor);
   },
 };
 </script>

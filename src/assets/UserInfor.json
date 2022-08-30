@@ -1,0 +1,24 @@
+{
+    "name":"千迦",
+    "password": 1226,
+    "todolist":{
+        "done":[
+            {
+                "name":"寫程式",
+                "status":true,
+                "enddate":0,
+                "pomodoro":4,
+                "totalpaytime":4
+            }
+        ],
+        "todo":[
+            {
+                "name":"看書",
+                "status":false,
+                "enddate":0,
+                "pomodoro":4,
+                "totalpomodoro":4
+            }
+        ]
+    }
+}
