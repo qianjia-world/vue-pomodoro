@@ -18,6 +18,27 @@
                 "enddate":0,
                 "pomodoro":4,
                 "totalpomodoro":4
+            },
+            {
+                "name":"打掃",
+                "status":false,
+                "enddate":0,
+                "pomodoro":4,
+                "totalpomodoro":4
+            },
+            {
+                "name":"學編程",
+                "status":false,
+                "enddate":0,
+                "pomodoro":4,
+                "totalpomodoro":4
+            },
+            {
+                "name":"複習知識",
+                "status":false,
+                "enddate":0,
+                "pomodoro":4,
+                "totalpomodoro":4
             }
         ]
     }

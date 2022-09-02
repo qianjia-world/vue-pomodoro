@@ -1,36 +1,17 @@
 <template>
-  <main>
-    <InputComponent></InputComponent>
-    <NowToDoComponent></NowToDoComponent>
-    <ListComponent></ListComponent>
-  </main>
-  <section>
-    <div class="round-border">
-      <div class="round">
-        <a href="#" class="material-icons">
-            play_circle_filled
-        </a>
-      </div>
-      <span class="material-icons">
-        stop
-      </span>
-    </div>
-  </section>
-  <nav>
-    <ul>
-      <li><a href="./todoList.html"><span class="material-icons">
-          list
-          </span></a>
-          </li>
-      <li><a href="./analytics.html"><span class="material-icons">
-          insert_chart
-          </span></a></li>
-      <li><a href="./ringtones.html"><span class="material-icons">
-          library_music
-          </span></a></li>
-    </ul>
-    <span class="logo">POMODORO</span>
-  </nav>
+  <div class="homeview">
+    <main>
+      <InputComponent></InputComponent>
+      <NowToDoComponent></NowToDoComponent>
+      <ListComponent></ListComponent>
+    </main>
+    <section>
+      <ToggleButton></ToggleButton>
+    </section>
+    <nav>
+      <NavLinkComponent></NavLinkComponent>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -40,6 +21,8 @@ import InputComponent from '../components/InputComponent.vue';
 import NowToDoComponent from '../components/NowToDoComponent.vue';
 import ListComponent from '../components/ListComponent.vue';
 import userinfor from '../assets/UserInfor.json';
+import ToggleButton from '../components/toggleButtonComponent.vue';
+import NavLinkComponent from '../components/NavLinkComponent.vue';
 
 export default {
   name: 'HomeView',
@@ -47,9 +30,33 @@ export default {
     InputComponent,
     ListComponent,
     NowToDoComponent,
+    ToggleButton,
+    NavLinkComponent,
   },
   created() {
     this.$store.commit('setUser', userinfor);
   },
 };
 </script>
+
+<style lang="scss"  scoped>
+  .homeview{
+    width: 1280px;
+    height: 800px;
+    display: flex;
+    justify-content: space-between;
+    padding: 48px 85px;
+    background:linear-gradient(to right, #FFEDF7 65%,#003164 35%);
+  }
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 445px;
+  }
+  section{
+    display: flex;
+    align-items: center;
+    margin-right: 14px;
+  }
+</style>
