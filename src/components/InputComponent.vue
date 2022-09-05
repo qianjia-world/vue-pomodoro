@@ -1,11 +1,42 @@
 <template>
     <div class="inputbox">
         <label for="writeTodo">
-            <input type="text" id="writeTodo" placeholder="add a new mission…" >
+            <input type="text" id="writeTodo"
+            placeholder="add a new mission…"
+            v-model="todo"
+            @keydown.enter="addTodo()" >
         </label>
-        <a href="#"><span class="material-icons">add</span></a>
+        <a href="#" @click.prevent="addTodo()"><span class="material-icons">add</span></a>
     </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      todo: '',
+    };
+  },
+  methods: {
+    addTodo() {
+      if (!this.todo) {
+        this.$store.commit('setTipsMsg', '訊息內容不可為空');
+        return;
+      }
+      const todo = {
+        name: this.todo,
+        status: false,
+        enddate: null,
+        pomodoro: 0,
+        totalpomodoro: 0,
+      };
+      this.$store.commit('addTodo', todo);
+      this.$store.commit('setTipsMsg', '新增成功');
+      this.todo = '';
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .inputbox{

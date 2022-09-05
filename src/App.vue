@@ -1,5 +1,6 @@
 <template>
   <router-view/>
+  <TipsMessage></TipsMessage>
 </template>
 
 <style lang="scss">

@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     user: {},
+    tipsMsg: '',
   },
   getters: {
     todo(state) {
@@ -15,6 +16,12 @@ export default createStore({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+    addTodo(state, payload) {
+      state.user.todolist.todo.push(payload);
+    },
+    setTipsMsg(state, payload) {
+      state.tipsMsg = payload;
     },
   },
   actions: {
