@@ -1,15 +1,33 @@
 <template>
-    <div class="round-border">
-        <div class="round">
-          <a href="#" class="material-icons">
-              play_circle_filled
-          </a>
-          <span class="material-icons">
-          stop
-          </span>
-        </div>
+  <div class="round-border">
+    <div class="round">
+      <a href="" class="material-icons" ref="toggleButton"
+        @click.prevent="toggleCountdown($event)" @keydown.enter="toggleButton($event)
+        " >play_circle_filled
+      </a>
+      <span class="material-icons">
+      stop
+      </span>
     </div>
+  </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    toggleCountdown(e) {
+      if (e.target.innerText === 'play_circle_filled') {
+        this.$store.commit('setCountdown', true);
+        this.$store.dispatch('openCountdown', e);
+        e.target.innerText = 'pause_circle_filled';
+      } else {
+        this.$store.commit('setCountdown', false);
+        e.target.innerText = 'play_circle_filled';
+      }
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .round-border{

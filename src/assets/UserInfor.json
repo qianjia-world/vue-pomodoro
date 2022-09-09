@@ -4,41 +4,41 @@
     "todolist":{
         "done":[
             {
-                "name":"寫程式",
+                "name":"寫程式:接API",
                 "status":true,
                 "enddate":0,
-                "pomodoro":4,
-                "totalpaytime":4
+                "pomodo":4,
+                "uuid":4546543
             }
         ],
         "todo":[
             {
-                "name":"看書",
+                "name":"看書:被討厭的勇氣",
                 "status":false,
                 "enddate":0,
-                "pomodoro":4,
-                "totalpomodoro":4
+                "pomodo":2,
+                "uuid":46873218
             },
             {
-                "name":"打掃",
+                "name":"打掃:客廳浴室",
                 "status":false,
                 "enddate":0,
-                "pomodoro":4,
-                "totalpomodoro":4
+                "pomodo":1,
+                "uuid":6814644
             },
             {
-                "name":"學編程",
+                "name":"學編程:Vue",
                 "status":false,
                 "enddate":0,
-                "pomodoro":4,
-                "totalpomodoro":4
+                "pomodo":4,
+                "uuid":7861445
             },
             {
-                "name":"複習知識",
+                "name":"複習知識:JS核心",
                 "status":false,
                 "enddate":0,
-                "pomodoro":4,
-                "totalpomodoro":4
+                "pomodo":4,
+                "uuid":19767996
             }
         ]
     }
