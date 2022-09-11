@@ -1,8 +1,53 @@
 import { createStore } from 'vuex';
+import uuid from '../filter/uuid';
 
 export default createStore({
   state: {
-    user: {},
+    user: {
+      name: '千迦',
+      password: 1226,
+      todolist: {
+        done: [
+          {
+            name: '寫程式:接API',
+            status: true,
+            enddate: 0,
+            pomodo: 4,
+            uuid: uuid(),
+          },
+        ],
+        todo: [
+          {
+            name: '看書:被討厭的勇氣',
+            status: false,
+            enddate: 0,
+            pomodo: 2,
+            uuid: uuid(),
+          },
+          {
+            name: '打掃:客廳浴室',
+            status: false,
+            enddate: 0,
+            pomodo: 1,
+            uuid: uuid(),
+          },
+          {
+            name: '學編程:Vue',
+            status: false,
+            enddate: 0,
+            pomodo: 4,
+            uuid: uuid(),
+          },
+          {
+            name: '複習知識:JS核心',
+            status: false,
+            enddate: 0,
+            pomodo: 4,
+            uuid: uuid(),
+          },
+        ],
+      },
+    },
     tipsMsg: '',
     optionMsg: '',
     minute: 0,
@@ -16,6 +61,12 @@ export default createStore({
     },
     done(state) {
       return state.user.todolist.done;
+    },
+    nowdoName(state) {
+      return state.user.todolist.todo[0].name;
+    },
+    todoTop3(state) {
+      return state.user.todolist.todo.slice(1, 4);// 錯誤在這，因為傳參考
     },
     countdown(state) {
       return state.countdown;
@@ -36,9 +87,17 @@ export default createStore({
     },
     finishTodo(state, payload) {
       const todo = state.user.todolist.todo.find(((item) => item.uuid === payload));
-      const index = state.user.todolist.todo.findIndex(((item) => item.uuid === payload));
       state.user.todolist.done.push(todo);
-      state.user.todolist.todo.splice(index, 1);
+      state.user.todolist.todo.shift();
+    },
+    setTopTodo(state, payload) {
+      console.log(payload);
+      const todo = state.user.todolist.todo.find(((item) => item.uuid === payload));
+      console.log(todo);
+      const todoIndex = state.user.todolist.todo.indexOf(todo);
+      console.log(todoIndex);
+      state.user.todolist.todo.splice(todoIndex, 1);
+      state.user.todolist.todo.unshift(todo);
     },
     setTipsMsg(state, payload) {
       state.tipsMsg = payload;
@@ -69,9 +128,8 @@ export default createStore({
         if (context.state.minute === 0 && context.state.second === 0) {
           e.target.innerText = 'play_circle_filled';
           context.commit('setPomodoro', context.state.user.todolist.todo[0].pomodo + 1);
-          context.commit('finishTodo', context.state.user.todolist.todo[0].uuid);
-          context.commit('setMinute', 25);
-          context.commit('setSecond', 0);
+          context.commit('setMinute', 0);
+          context.commit('setSecond', 5);
           context.commit('setCountdown', false);
           clearInterval(countdown);
         } else if (context.state.minute !== 0 && context.state.second === 0) {

@@ -5,7 +5,7 @@
         <span class="material-icons">donut_large</span>
         <!-- <span class="material-icons">done</span> -->
         <div class="nowdo">
-          <p>[ {{ nowdo }} ]</p>
+          <p>[ {{ nowdoName }} ]</p>
           <div class="num">
             <span v-for="item in pomodoNum" class="material-icons" :key="item">
               motion_photos_on</span>
@@ -28,10 +28,8 @@ export default {
       'todo',
       'done',
       'countdown',
+      'nowdoName',
     ]),
-    nowdo() {
-      return this.todo[0].name;
-    },
     pomodoNum() {
       return this.todo[0].pomodo;
     },

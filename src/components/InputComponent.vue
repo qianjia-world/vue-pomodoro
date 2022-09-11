@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import uuid from '../filter/uuid';
+
 export default {
   data() {
     return {
@@ -28,8 +30,9 @@ export default {
         status: false,
         enddate: null,
         pomodoro: 0,
-        totalpomodoro: 0,
+        uuid: uuid(),
       };
+      console.log(todo.uuid);
       this.$store.commit('addTodo', todo);
       this.$store.commit('setTipsMsg', '新增成功');
       this.todo = '';

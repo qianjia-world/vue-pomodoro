@@ -20,7 +20,6 @@
 import InputComponent from '../components/InputComponent.vue';
 import NowToDoComponent from '../components/NowToDoComponent.vue';
 import ListComponent from '../components/ListComponent.vue';
-import userinfor from '../assets/UserInfor.json';
 import ToggleButton from '../components/toggleButtonComponent.vue';
 import NavLinkComponent from '../components/NavLinkComponent.vue';
 
@@ -32,9 +31,6 @@ export default {
     NowToDoComponent,
     ToggleButton,
     NavLinkComponent,
-  },
-  created() {
-    this.$store.commit('setUser', userinfor);
   },
 };
 </script>
