@@ -5,7 +5,9 @@
          @click.prevent="turnToTop($event)" @keydown.tab="turnToTop($event)">
             <a href=""><span class="material-icons">radio_button_unchecked</span></a>
             <p>{{item.name}}</p>
-            <span v-for="pomodo in item.pomodo" class="material-icons" :key="pomodo">
+            <span v-if="item.pomodo > 10">...</span>
+            <span v-for="pomodo in (item.pomodo > 10 ? 10 : item.pomodo)"
+               class="material-icons" :key="pomodo">
               motion_photos_on</span>
             <a href="#" class="playbutton"><span class="material-icons">
                 play_circle_outline

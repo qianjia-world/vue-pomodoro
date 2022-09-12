@@ -4,16 +4,18 @@
     <ListLink></ListLink>
   </nav>
   <main>
-    <TodoList v-if="TodoList"></TodoList>
-    <Analytics v-else-if="Analytics"></Analytics>
-    <Ringtones v-else></Ringtones>
+    <keep-alive>
+      <TodoList v-if="id === 'todolist'"></TodoList>
+      <Analytics v-else-if="id === 'analytics'"></Analytics>
+      <Ringtones v-else></Ringtones>
+    </keep-alive>
     <!-- <component :is='TodoList'></component> -->
   </main>
   <aside>
-    <a href=""><span class="material-icons">
+    <router-link to="/"><span class="material-icons">
       clear
-      </span></a>
-    <a href=""><span class="logo">POMODORO</span></a>
+      </span></router-link>
+    <router-link to="/"><span class="logo">POMODORO</span></router-link>
   </aside>
   <HourMeter></HourMeter>
 </div>
@@ -33,6 +35,11 @@ export default {
     Ringtones,
     ListLink,
     HourMeter,
+  },
+  computed: {
+    id() {
+      return this.$route.params.options;
+    },
   },
   data() {
     return {

@@ -1,15 +1,15 @@
 <template>
 <div class="link">
     <ul>
-        <li><router-link to="about"><span class="material-icons">
+        <li><router-link to="/about/todolist"><span class="material-icons">
             list
             </span></router-link>
         </li>
-        <li><router-link to="about"><span class="material-icons">
+        <li><router-link to="/about/analytics"><span class="material-icons">
             insert_chart
             </span></router-link>
         </li>
-        <li><router-link to="about"><span class="material-icons">
+        <li><router-link to="/about/ringtones"><span class="material-icons">
             library_music
             </span></router-link>
         </li>

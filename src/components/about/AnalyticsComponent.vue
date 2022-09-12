@@ -7,11 +7,11 @@
             <div class="total">
                 <div class="today">
                     <h3>today</h3>
-                    <p><span>20</span>/tomato</p>
+                    <p><span>{{todaypomodo}}</span>/tomato</p>
                 </div>
                 <div class="week">
-                    <h3>week</h3>
-                    <p><span>108</span>/tomato</p>
+                    <h3>total</h3>
+                    <p><span>{{totalpomodo}}</span>/tomato</p>
                 </div>
             </div>
         </div>
@@ -27,6 +27,41 @@
         </div>
     </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+import dateToString from '../../filter/dateToString';
+
+export default {
+  computed: {
+    ...mapGetters([
+      'showMinute',
+      'showSecond',
+      'todo',
+      'done',
+      'countdown',
+      'nowdoName',
+    ]),
+    todaypomodo() {
+      let total = 0;
+      const today = dateToString();
+      this.done.forEach((item) => {
+        if (item.enddate === today) {
+          total += item.pomodo;
+        }
+      });
+      return total;
+    },
+    totalpomodo() {
+      let total = 0;
+      this.done.forEach((item) => {
+        total += item.pomodo;
+      });
+      return total;
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
     .list{

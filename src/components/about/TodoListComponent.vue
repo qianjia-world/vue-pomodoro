@@ -1,7 +1,7 @@
 <template>
   <InputComponent></InputComponent>
-  <ListComponent></ListComponent>
-  <ListComponent></ListComponent>
+  <ListComponent title="todo"></ListComponent>
+  <ListComponent title="done"></ListComponent>
 </template>
 
 <script>

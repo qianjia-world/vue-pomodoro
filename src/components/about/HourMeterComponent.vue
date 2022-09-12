@@ -1,12 +1,40 @@
 <template>
 <div class="time">
-    <h1>25:00</h1>
-    <p>the First thing to do today</p>
-    <a href="">
-       <span class="material-icons">play_circle</span>
+    <h1>{{ `${showMinute}:${showSecond}` }}</h1>
+    <p>[ {{ nowdoName }} ]</p>
+    <a href="" class="material-icons"
+    @click.prevent="toggleCountdown($event)" @keydown.enter="toggleButton($event)">
+       play_circle_filled
     </a>
 </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters([
+      'showMinute',
+      'showSecond',
+      'countdown',
+      'nowdoName',
+    ]),
+  },
+  methods: {
+    toggleCountdown(e) {
+      if (e.target.innerText === 'play_circle_filled') {
+        this.$store.commit('setCountdown', true);
+        this.$store.dispatch('openCountdown', e);
+        e.target.innerText = 'pause_circle_filled';
+      } else {
+        this.$store.commit('setCountdown', false);
+        e.target.innerText = 'play_circle_filled';
+      }
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .time{
@@ -23,7 +51,8 @@
         margin-top: 57px;
     }
     p{
-        line-height: 24px;
+        color: $primaryA;
+        line-height: $font-s;
     }
     a{
         position: absolute;
@@ -35,6 +64,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 96px;
+        color: $thirdA;
         background-image:radial-gradient(circle 116px,
             $light 0%,
             $light 20%,
@@ -56,9 +87,5 @@
     //     border-radius: 50%;
     //     border: 2px solid $thirdA;
     // }
-    span{
-        font-size: 96px;
-        color: $thirdA;
-    }
 }
 </style>

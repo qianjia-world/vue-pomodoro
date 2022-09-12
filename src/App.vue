@@ -1,7 +1,31 @@
 <template>
   <router-view/>
   <TipsMessage></TipsMessage>
+  <audio ref="audio"
+  loop preload="metadata">
+    <source src="aaa.mp3" type="audio/mpeg">
+    <track kind="captions"/>
+  </audio>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      audio: this.$refs.audio,
+    };
+  },
+  provide() {
+    return {
+      audio: Vue.computed(() => this.audio),
+    };
+  },
+  mounted() {
+    this.audio = this.$refs.audio;
+  },
+};
+</script>
 
 <style lang="scss">
   @import './styles/reset';

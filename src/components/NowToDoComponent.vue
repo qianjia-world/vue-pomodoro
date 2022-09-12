@@ -7,7 +7,9 @@
         <div class="nowdo">
           <p>[ {{ nowdoName }} ]</p>
           <div class="num">
-            <span v-for="item in pomodoNum" class="material-icons" :key="item">
+            <span v-if="pomodoNum>10">...</span>
+            <span v-for="item in (pomodoNum>10 ? 10 : pomodoNum)" class="material-icons"
+               :key="item">
               motion_photos_on</span>
             <span v-if="countdown" class="material-icons">timelapse</span>
           </div>

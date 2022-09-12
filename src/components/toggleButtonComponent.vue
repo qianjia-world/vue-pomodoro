@@ -1,7 +1,7 @@
 <template>
   <div class="round-border">
     <div class="round">
-      <a href="" class="material-icons" ref="toggleButton"
+      <a href="" class="material-icons"
         @click.prevent="toggleCountdown($event)" @keydown.enter="toggleButton($event)
         " >play_circle_filled
       </a>

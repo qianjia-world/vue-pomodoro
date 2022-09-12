@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import uuid from '../filter/uuid';
+import dateToString from '../filter/dateToString';
 
 export default createStore({
   state: {
@@ -11,8 +12,22 @@ export default createStore({
           {
             name: '寫程式:接API',
             status: true,
-            enddate: 0,
+            enddate: dateToString(),
             pomodo: 4,
+            uuid: uuid(),
+          },
+          {
+            name: '過去的過去',
+            status: true,
+            enddate: '2022-08-04',
+            pomodo: 20,
+            uuid: uuid(),
+          },
+          {
+            name: 'buggggg!',
+            status: true,
+            enddate: '2022-08-16',
+            pomodo: 90,
             uuid: uuid(),
           },
         ],
@@ -20,28 +35,28 @@ export default createStore({
           {
             name: '看書:被討厭的勇氣',
             status: false,
-            enddate: 0,
+            enddate: dateToString(),
             pomodo: 2,
             uuid: uuid(),
           },
           {
             name: '打掃:客廳浴室',
             status: false,
-            enddate: 0,
+            enddate: dateToString(),
             pomodo: 1,
             uuid: uuid(),
           },
           {
             name: '學編程:Vue',
             status: false,
-            enddate: 0,
+            enddate: dateToString(),
             pomodo: 4,
             uuid: uuid(),
           },
           {
             name: '複習知識:JS核心',
             status: false,
-            enddate: 0,
+            enddate: dateToString(),
             pomodo: 4,
             uuid: uuid(),
           },
@@ -66,7 +81,8 @@ export default createStore({
       return state.user.todolist.todo[0].name;
     },
     todoTop3(state) {
-      return state.user.todolist.todo.slice(1, 4);// 錯誤在這，因為傳參考
+      return state.user.todolist.todo.slice(1, 4);
+      // 錯誤在這，傳參考，splice會直接改到原陣列，傳參考
     },
     countdown(state) {
       return state.countdown;
@@ -86,16 +102,28 @@ export default createStore({
       state.user.todolist.todo.push(payload);
     },
     finishTodo(state, payload) {
-      const todo = state.user.todolist.todo.find(((item) => item.uuid === payload));
+      const todo = state.user.todolist.todo.find((item) => item.uuid === payload);
+      todo.enddate = dateToString();
+      console.log(todo.enddate);
+      const todoIndex = state.user.todolist.todo.indexOf(todo);
       state.user.todolist.done.push(todo);
-      state.user.todolist.todo.shift();
+      state.user.todolist.todo.splice(todoIndex, 1);
+    },
+    deleteTodo(state, payload) {
+      const todo = state.user.todolist.todo.find((item) => item.uuid === payload);
+      const todoIndex = state.user.todolist.todo.indexOf(todo);
+      state.user.todolist.todo.splice(todoIndex, 1);
+    },
+    reTodo(state, payload) {
+      const done = state.user.todolist.done.find((item) => item.uuid === payload);
+      const doneIndex = state.user.todolist.done.indexOf(done);
+      done.enddate = null;
+      state.user.todolist.done.splice(doneIndex, 1);
+      state.user.todolist.todo.unshift(done);
     },
     setTopTodo(state, payload) {
-      console.log(payload);
-      const todo = state.user.todolist.todo.find(((item) => item.uuid === payload));
-      console.log(todo);
+      const todo = state.user.todolist.todo.find((item) => item.uuid === payload);
       const todoIndex = state.user.todolist.todo.indexOf(todo);
-      console.log(todoIndex);
       state.user.todolist.todo.splice(todoIndex, 1);
       state.user.todolist.todo.unshift(todo);
     },
