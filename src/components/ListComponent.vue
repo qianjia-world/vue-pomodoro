@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     turnToTop(e) {
-      console.log(e.target.closest('li').id);
       this.$store.commit('setTopTodo', e.target.closest('li').id);
     },
   },

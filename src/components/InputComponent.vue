@@ -32,7 +32,6 @@ export default {
         pomodoro: 0,
         uuid: uuid(),
       };
-      console.log(todo.uuid);
       this.$store.commit('addTodo', todo);
       this.$store.commit('setTipsMsg', '新增成功');
       this.todo = '';

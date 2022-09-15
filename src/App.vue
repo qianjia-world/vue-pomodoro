@@ -14,10 +14,13 @@
 </template>
 
 <script>
+import DeathParts from './sounds/DeathParts.mp3';// 'DeathParts' is defined but never used
+import Dreamland from './sounds/Dreamland.mp3';
 
 export default {
   data() {
     return {
+      mouic: [DeathParts, Dreamland],
     };
   },
   mounted() {

@@ -112,7 +112,6 @@ export default createStore({
     finishTodo(state, payload) {
       const todo = state.user.todolist.todo.find((item) => item.uuid === payload);
       todo.enddate = dateToString();
-      console.log(todo.enddate);
       const todoIndex = state.user.todolist.todo.indexOf(todo);
       state.user.todolist.done.push(todo);
       state.user.todolist.todo.splice(todoIndex, 1);
@@ -159,10 +158,8 @@ export default createStore({
     },
     setAudioWork(state, payload) {
       // test1 404
-      console.log(state.audioWork);
-      console.log(state.audioWork.src);
-      console.dir(state.audioWork.children[0].src);
-      state.audioWork.children[0].src = `./sounds/${payload}.mp3`;
+      console.log(state.audioWork.children[0].src);
+      state.audioWork.children[0].src = `../media/${payload}.mp3`;
       state.audioWork.load();// 404
       state.audioWork.play();
       // test2 require 報錯Unexpected require()；要用單引號
