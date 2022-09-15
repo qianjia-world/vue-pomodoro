@@ -69,6 +69,8 @@ export default createStore({
     second: 5,
     pomodoro: 0,
     countdown: false,
+    audioWork: {},
+    audioBreak: {},
   },
   getters: {
     todo(state) {
@@ -92,6 +94,12 @@ export default createStore({
     },
     showSecond(state) {
       return state.second.toString().length !== 2 ? `0${state.second.toString()}` : state.second.toString();
+    },
+    audioWork(state) {
+      return state.audioWork;
+    },
+    audioBreak(state) {
+      return state.audioBreak;
     },
   },
   mutations: {
@@ -144,6 +152,30 @@ export default createStore({
     },
     setCountdown(state, payload) {
       state.countdown = payload;
+    },
+    setAudio(state, payload) {
+      state.audioWork = payload.work;
+      state.audioBreak = payload.break;
+    },
+    setAudioWork(state, payload) {
+      // test1 404
+      console.log(state.audioWork);
+      console.log(state.audioWork.src);
+      console.dir(state.audioWork.children[0].src);
+      state.audioWork.children[0].src = `./sounds/${payload}.mp3`;
+      state.audioWork.load();// 404
+      state.audioWork.play();
+      // test2 require 報錯Unexpected require()；要用單引號
+      // state.audioWork.src = `./sounds/${payload}.mp3`;
+      // state.audioWork.children[0].src = require('./sounds/' + payload + '.mp3');
+    },
+    setAudioBreak(state, payload) {
+      if (payload === '') {
+        state.audioBreak.src = '';
+      } else {
+        state.audioBreak.src = `./sounds/${payload}.mp3`;
+        state.audioBreak.play();
+      }
     },
   },
   actions: {

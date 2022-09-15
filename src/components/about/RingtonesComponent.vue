@@ -5,25 +5,14 @@
                 <h2>work</h2>
             </div>
             <ul class="musicList">
-                <li><a href="" class="material-icons">radio_button_unchecked</a>none</li>
-                <li><a href="" @click.prevent="playsound($event)"
-                 @keydown.enter.prevent="playsound($event)"
-                 data-key="A Typical Ride Out" class="material-icons active">
-                  radio_button_checked</a>Default</li>
-                <li><a href="" @click.prevent="newplaysound()" class="material-icons"
-                @keydown.enter.prevent="newplaysound()">radio_button_unchecked</a>alarm</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>alert</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>beep</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bell</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bird</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bugle</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>digital</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>drop</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>horn</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>music</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>ring</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>warning</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>whistle</li>
+                <li v-for="item in songList" :key="item">
+                  <a href=""
+                  @click.prevent="playsound(item,'Work')"
+                  @keydown.enter.prevent="playsound(item, 'Work')"
+                  class="material-icons">
+                  radio_button_unchecked</a>
+                  <!-- radio_button_checked -->
+                  {{ item }}</li>
             </ul>
         </div>
         <div class="break">
@@ -31,21 +20,14 @@
                 <h2>break</h2>
             </div>
             <ul class="musicList">
-                <li><a href="" class="material-icons">radio_button_unchecked</a>none</li>
-                <li><a href="" class="material-icons active">radio_button_checked</a>Default</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>alarm</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>alert</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>beep</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bell</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bird</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>bugle</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>digital</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>drop</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>horn</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>music</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>ring</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>warning</li>
-                <li><a href="" class="material-icons">radio_button_unchecked</a>whistle</li>
+                <li v-for="item in songList" :key="item">
+                  <a href=""
+                  @click.prevent="playsound(item,'Break')"
+                  @keydown.enter.prevent="playsound(item, 'Break')"
+                  class="material-icons">
+                  radio_button_unchecked</a>
+                  <!-- radio_button_checked -->
+                  {{ item }}</li>
             </ul>
         </div>
     </div>
@@ -53,7 +35,7 @@
       <source src="../../sounds/aaa.mp3" type="audio/mpeg">
       <track kind="captions"/>
     </audio> -->
-    <img src="../../sounds/out-transparent-4.webp" alt="">
+    <!-- <img src="../../sounds/out-transparent-4.webp" alt=""> -->
 </template>
 
 <script>
@@ -62,23 +44,31 @@ export default {
     return {
       work: 'none',
       break: 'none',
+      songList: [
+        'none',
+        'Allegro',
+        'RideOut',
+        'Dreamland',
+        'FonkeeRyde',
+        'Forest',
+        'Beauty',
+        'JustStay',
+        'Lament',
+        'Surrender',
+        'No.4Piano',
+        'SkewlsOwt',
+        'Teasing',
+        'DeathParts',
+        'Waiting',
+      ],
     };
   },
   methods: {
-    // playsound(e) {
-    //   console.dir(this.$refs.audio);
-    //   const audio = document.querySelector(`audio[data-key="${e.target.dataset.key}"]`);
-    //   if (!audio) return;
-    //   e.target.classList.add('active');
-    //   audio.currentTime = 0;
-    //   audio.play();
-    // },
-    playsound() {
-      console.log(this.audio);
+    playsound(item, time) {
+      this.$store.commit(`setAudio${time}`, item);
+      // this.$store.getters.audio.play();
     },
   },
-  inject: ['audio'],
-
 };
 </script>
 

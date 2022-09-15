@@ -1,9 +1,14 @@
 <template>
   <router-view/>
   <TipsMessage></TipsMessage>
-  <audio ref="audio"
+  <audio ref="audioWork"
   loop preload="metadata">
-    <source src="aaa.mp3" type="audio/mpeg">
+    <source src="./sounds/Allegro.mp3" type="audio/mpeg">
+    <track kind="captions"/>
+  </audio>
+  <audio ref="audioBreak"
+  loop preload="metadata">
+    <source src="./sounds/Beauty.mp3" type="audio/mpeg">
     <track kind="captions"/>
   </audio>
 </template>
@@ -13,16 +18,14 @@
 export default {
   data() {
     return {
-      audio: this.$refs.audio,
-    };
-  },
-  provide() {
-    return {
-      audio: Vue.computed(() => this.audio),
     };
   },
   mounted() {
-    this.audio = this.$refs.audio;
+    const payload = {
+      work: this.$refs.audioWork,
+      break: this.$refs.audioBreak,
+    };
+    this.$store.commit('setAudio', payload);
   },
 };
 </script>
