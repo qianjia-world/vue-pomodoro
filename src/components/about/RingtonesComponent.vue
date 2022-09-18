@@ -58,7 +58,7 @@ export default {
         'No.4Piano',
         'SkewlsOwt',
         'Teasing',
-        'DeathParts.684f471c',
+        'DeathParts',
         'Waiting',
       ],
     };

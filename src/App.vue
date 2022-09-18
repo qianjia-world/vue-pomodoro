@@ -3,24 +3,21 @@
   <TipsMessage></TipsMessage>
   <audio ref="audioWork"
   loop preload="metadata">
-    <source src="./sounds/Allegro.mp3" type="audio/mpeg">
+    <source src="../public/sounds/Allegro.mp3" type="audio/mpeg">
     <track kind="captions"/>
   </audio>
   <audio ref="audioBreak"
   loop preload="metadata">
-    <source src="./sounds/Beauty.mp3" type="audio/mpeg">
+    <source src="../public/sounds/Beauty.mp3" type="audio/mpeg">
     <track kind="captions"/>
   </audio>
 </template>
 
 <script>
-import DeathParts from './sounds/DeathParts.mp3';// 'DeathParts' is defined but never used
-import Dreamland from './sounds/Dreamland.mp3';
 
 export default {
   data() {
     return {
-      mouic: [DeathParts, Dreamland],
     };
   },
   mounted() {
